@@ -8,7 +8,7 @@ COPY pkg ./pkg
 RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w" -o api /cmd/api/main.go
 
 #Test stage
-FROM build AS test
+FROM golang:1.22-alpine AS test
 RUN go test -v ./...
 
 #Release stage
