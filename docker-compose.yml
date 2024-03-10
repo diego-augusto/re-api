@@ -7,5 +7,18 @@ services:
       context: .
       dockerfile: Dockerfile
     restart: always
+    environment:
+      - PORT=8080
     ports:
       - 8080:8080
+
+  ui: 
+    container_name: ui
+    build:
+      args:
+        - REACT_APP_API_URL=${API_URL}
+      context: ui
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 80:80
