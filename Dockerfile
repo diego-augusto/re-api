@@ -14,6 +14,6 @@ RUN go test -v ./...
 #Release stage
 FROM gcr.io/distroless/base-debian11 AS release-stage
 WORKDIR /
-COPY --from=builder  /api /api
+COPY --from=build-stage  /api /api
 USER nonroot:nonroot
 ENTRYPOINT [ "/api"]
