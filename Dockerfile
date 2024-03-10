@@ -12,7 +12,7 @@ FROM build AS test
 RUN go test -v ./...
 
 #Release stage
-FROM gcr.io/distroless/base-debian11 AS release
+FROM alpine AS release
 WORKDIR /
 COPY --from=builder  /api /api
 USER nonroot:nonroot
