@@ -14,10 +14,10 @@ jobs:
         go-version: '1.22.x'
 
     - name: test coverage
-      run: go test -race -coverprofile=coverage.out -covermode=atomic
+      run: go test ./... -race -coverprofile=coverage.out -covermode=atomic
 
     - name: upload coverage
       uses: codecov/codecov-action@v3
       env:
         token: ${{ secrets.CODECOV_TOKEN }}
-        slug: diego-augusto/go-retry
+        slug: diego-augusto/re-api
