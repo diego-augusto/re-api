@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"os"
 	"re-go-challenge/pkg/packets"
 	"re-go-challenge/pkg/server"
@@ -18,7 +19,10 @@ func main() {
 	}
 
 	// Service instance
-	s := server.New(packets.New())
+	s, err := server.New(packets.New())
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	// Echo instance
 	e := echo.New()

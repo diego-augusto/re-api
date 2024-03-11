@@ -1,8 +1,9 @@
 package packets
 
 import (
-	"reflect"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func Test_GetPacks(t *testing.T) {
@@ -70,9 +71,7 @@ func Test_GetPacks(t *testing.T) {
 		t.Run(tc.desc, func(t *testing.T) {
 			t.Parallel()
 			got := New().GetPacks(tc.items, tc.sizes)
-			if !reflect.DeepEqual(got, tc.want) {
-				t.Errorf("got: %v, want: %v", got, tc.want)
-			}
+			assert.Equal(t, tc.want, got)
 		})
 	}
 }
