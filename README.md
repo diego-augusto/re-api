@@ -2,6 +2,10 @@
 ![example workflow](https://github.com/diego-augusto/re-api/actions/workflows/cicd.yml/badge.svg)
 [![codecov](https://codecov.io/gh/diego-augusto/re-api/graph/badge.svg?token=XO8CI94YMG)](https://codecov.io/gh/diego-augusto/re-api)
 
+### Running here
+- [UI](http://ec2-44-211-123-182.compute-1.amazonaws.com/)
+- [API](http://ec2-44-211-123-182.compute-1.amazonaws.com:8080)
+
 ## Running the application (API-only)
 
 Make sure `does not have` any other service running on port  or change the `PORT` environment variable.
