@@ -2,13 +2,11 @@
 ![example workflow](https://github.com/diego-augusto/re-api/actions/workflows/cicd.yml/badge.svg)
 [![codecov](https://codecov.io/gh/diego-augusto/re-api/graph/badge.svg?token=XO8CI94YMG)](https://codecov.io/gh/diego-augusto/re-api)
 
+## Running the application (API-only)
 
+Make sure `does not have` any other service running on port  or change the `PORT` environment variable.
 
-## Running the application
-
-- Make sure `does not have` any other service running on port  or change the `PORT` environment variable.
-
-- See the Makefile for more commands.
+See the Makefile for more commands.
 
 #### with go run
 ```bash
@@ -35,6 +33,16 @@ curl --location 'http://localhost:8080/pack' \
 [{"size":5000,"quantity":2},{"size":2000,"quantity":1},{"size":250,"quantity":1}]
 ```
 
+## Running the application (docker-compose)
+
+#### with go run
+```bash
+export PORT=8080
+export API_URL=http://localhost:8080
+make compose
+```
+
+Make sure `does not have` any other service running on port `80` (ui) or change the bind in the compose file.
 
 ## Routes
 

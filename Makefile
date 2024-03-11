@@ -15,3 +15,6 @@ dc-run: dc
 
 dc-stop:
 	docker stop $(shell docker ps -q --filter ancestor=re-api)
+
+compose:
+	docker-compose up -d --build
