@@ -1,4 +1,8 @@
 # API Challenge
+![example workflow](https://github.com/diego-augusto/re-api/actions/workflows/cicd.yml/badge.svg)
+[![codecov](https://codecov.io/gh/diego-augusto/re-api/graph/badge.svg?token=XO8CI94YMG)](https://codecov.io/gh/diego-augusto/re-api)
+
+
 
 ## Running the application
 
