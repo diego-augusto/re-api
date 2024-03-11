@@ -10,39 +10,55 @@ function App() {
 
   const addOnChange = () => {
     setSelectedSizes(
-      [...selectedSize, parseInt(itemSize)],
+      [parseInt(itemSize), ...selectedSize],
     );
-    setSizes([...sizes, parseInt(itemSize)])
+    setSizes([parseInt(itemSize), ...sizes])
     setItemSize(0)
   }
 
   return (
     <div className="App">
-      <h1>Package Calculator</h1>
       <div className="container">
-      <div className="row">
-          <h2>Package Sizes</h2>
+        <h1><i class="bi bi-box"></i> Packaging Calculator <i class="bi bi-calculator-fill"></i></h1>
+        <div className="row">
+          <h2>Packages</h2>
           <form>
-            <label>Package Size</label>
-            <input type="number" value={itemSize} onChange={e => setItemSize(e.target.value)} />
-            <button type="button" className='btn btn-primary' onClick={addOnChange}>Add New Package Size</button>
+            <label>Size</label>
+            <input
+              id='re-input'
+              aria-describedby="re-inputFeedback"
+              type="number"
+              value={itemSize}
+              onChange={e => setItemSize(e.target.value)} s
+            />
+            <button
+              type="button"
+              className='btn btn-primary'
+              onClick={addOnChange}><i class="bi bi-plus-square-fill"></i>
+            </button>
           </form>
-          <table>
+          <table className="table table-striped">
             <thead>
               <tr>
-                <th>Package Size</th>
+                <th>Size</th>
+                <th>Options</th>
               </tr>
             </thead>
             <tbody>
               {selectedSize.map((size) => (
                 <tr key={size}>
-                  <td>{size}</td>
+                  <td>
+                    <i class="bi bi-box"></i> ({size})
+                  </td>
+                  <td>
+                    <i class="bi bi-trash" onClick={() => setSelectedSizes(selectedSize.filter(s => s !== size))}></i>
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <PackOrder sizes={selectedSize}/>
+        <PackOrder sizes={selectedSize} />
       </div>
     </div>
   );

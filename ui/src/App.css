@@ -44,3 +44,8 @@
   justify-content: center;
   justify-content: space-evenly;
 }
+
+#re-input{
+  margin-left: 10px;
+  margin-right: 10px;
+}
