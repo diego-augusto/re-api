@@ -11,66 +11,67 @@ func Test_GetPacks(t *testing.T) {
 		desc  string
 		items int
 		sizes []int
-		want  []packet
+		want  map[int]int
 	}{
 		{
-			desc:  "items 0",
-			items: 0,
-			sizes: []int{1000, 500},
-			want:  []packet{},
+			items: 1000,
+			sizes: []int{2000, 3000},
+			want:  map[int]int{2000: 1},
 		},
 		{
-			desc:  "itemsles than 0",
+			items: 500000,
+			sizes: []int{23, 31, 53},
+			want:  map[int]int{23: 2, 31: 7, 53: 9429},
+		},
+		{
+			items: 14,
+			sizes: []int{5, 12},
+			want:  map[int]int{5: 3},
+		},
+		{
 			items: -1,
 			sizes: []int{1000, 500},
-			want:  []packet{},
+			want:  map[int]int{},
 		},
 		{
-			desc:  "no sizes",
 			items: 501,
 			sizes: []int{},
-			want:  []packet{},
+			want:  map[int]int{},
 		},
 		{
-			desc:  "has lower number",
+			items: 500,
+			sizes: []int{1000, 500},
+			want:  map[int]int{500: 1},
+		},
+		{
 			items: 501,
 			sizes: []int{1000, 500},
-			want: []packet{
-				{Size: 500, Quantity: 2},
-			},
+			want:  map[int]int{1000: 1},
 		},
 		{
-			desc:  "less than lower size",
 			items: 1,
-			sizes: []int{500, 250},
-			want: []packet{
-				{Size: 250, Quantity: 1},
-			},
+			sizes: []int{1000, 500},
+			want:  map[int]int{500: 1},
 		},
 		{
-			desc:  "fit in two diferent packs",
 			items: 501,
 			sizes: []int{1000, 500, 250},
-			want: []packet{
-				{Size: 500, Quantity: 1},
-				{Size: 250, Quantity: 1},
-			},
+			want:  map[int]int{500: 1, 250: 1},
 		},
 		{
-			desc:  "fit in three diferent packs",
 			items: 12001,
 			sizes: []int{5000, 2000, 1000, 500, 250},
-			want: []packet{
-				{Size: 5000, Quantity: 2},
-				{Size: 2000, Quantity: 1},
-				{Size: 250, Quantity: 1},
+			want: map[int]int{
+				5000: 2,
+				2000: 1,
+				250:  1,
 			},
 		},
 	}
 	for _, tc := range testCases {
 		t.Run(tc.desc, func(t *testing.T) {
 			t.Parallel()
-			got := New().GetPacks(tc.items, tc.sizes)
+			got := New().GetPacks(tc.sizes, tc.items)
 			assert.Equal(t, tc.want, got)
 		})
 	}

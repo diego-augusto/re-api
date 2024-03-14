@@ -13,10 +13,10 @@ func (s server) GetPacks(c echo.Context) error {
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, httpError{Message: err.Error()})
 	}
-	packs := s.packSrv.GetPacks(input.Items, input.Sizes)
+	packs := s.packSrv.GetPacks(input.Sizes, input.Items)
 	response := make([]packResponse, 0)
-	for _, p := range packs {
-		response = append(response, packResponse{Size: p.Size, Quantity: p.Quantity})
+	for k, v := range packs {
+		response = append(response, packResponse{Size: k, Quantity: v})
 	}
 	return c.JSON(http.StatusOK, response)
 }
